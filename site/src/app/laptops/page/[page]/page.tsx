@@ -2,23 +2,60 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllLaptops, formatPrice } from "@/lib/laptops";
 import Header from "@/components/Header";
+import { notFound } from "next/navigation";
 
 const LAPTOPS_PER_PAGE = 100;
 
-export const metadata: Metadata = {
-  title: "전체 노트북 목록 - 중고 노트북 스펙 비교",
-  description:
-    "맥북, 삼성 갤럭시북, LG 그램, 레노버 씽크패드 등 노트북 스펙과 중고 가격을 비교해보세요. 브랜드별, 용도별 노트북 추천.",
-  keywords: ["노트북 목록", "노트북 비교", "맥북", "갤럭시북", "그램", "씽크패드", "중고 노트북"],
-  alternates: {
-    canonical: "/laptops",
-  },
-};
+interface PageProps {
+  params: Promise<{ page: string }>;
+}
 
-export default function LaptopsPage() {
+export async function generateStaticParams() {
+  const laptops = getAllLaptops();
+  const totalPages = Math.ceil(laptops.length / LAPTOPS_PER_PAGE);
+
+  return Array.from({ length: totalPages }, (_, i) => ({
+    page: String(i + 1),
+  }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { page } = await params;
+  const pageNum = parseInt(page, 10);
+
+  return {
+    title: `전체 노트북 목록 - ${pageNum}페이지`,
+    description: `노트북 목록 ${pageNum}페이지. 맥북, 삼성 갤럭시북, LG 그램 등 중고 노트북 스펙과 가격 비교.`,
+    alternates: {
+      canonical: `/laptops/page/${page}`,
+    },
+  };
+}
+
+export default async function LaptopsPagePaginated({ params }: PageProps) {
+  const { page } = await params;
+  const pageNum = parseInt(page, 10);
   const allLaptops = getAllLaptops();
-  const laptops = allLaptops.slice(0, LAPTOPS_PER_PAGE);
   const totalPages = Math.ceil(allLaptops.length / LAPTOPS_PER_PAGE);
+
+  if (isNaN(pageNum) || pageNum < 1 || pageNum > totalPages) {
+    notFound();
+  }
+
+  const startIndex = (pageNum - 1) * LAPTOPS_PER_PAGE;
+  const laptops = allLaptops.slice(startIndex, startIndex + LAPTOPS_PER_PAGE);
+
+  // Calculate visible page numbers
+  const getVisiblePages = () => {
+    const pages: number[] = [];
+    const start = Math.max(1, pageNum - 2);
+    const end = Math.min(totalPages, pageNum + 2);
+
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+    return pages;
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -27,9 +64,9 @@ export default function LaptopsPage() {
       {/* Main Content */}
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">전체 노트북</h1>
+          <h1 className="text-3xl font-bold text-gray-900">전체 노트북 - {pageNum}페이지</h1>
           <p className="mt-2 text-gray-600">
-            총 {allLaptops.length.toLocaleString()}개의 노트북 중 {LAPTOPS_PER_PAGE}개 표시
+            총 {allLaptops.length.toLocaleString()}개 중 {startIndex + 1}~{Math.min(startIndex + LAPTOPS_PER_PAGE, allLaptops.length)}번째
           </p>
           <Link
             href="/search"
@@ -72,8 +109,7 @@ export default function LaptopsPage() {
               </h2>
 
               <p className="mb-4 line-clamp-2 text-sm text-gray-600">
-                {laptop.cpu} · {laptop.ramGb}GB · {laptop.storageGb}GB{" "}
-                {laptop.storageType}
+                {laptop.cpu} · {laptop.ramGb}GB · {laptop.storageGb}GB {laptop.storageType}
               </p>
 
               <div className="flex items-center justify-between">
@@ -107,29 +143,63 @@ export default function LaptopsPage() {
           ))}
         </div>
 
-        {/* Pagination Info */}
-        <div className="mt-8 text-center">
-          <p className="text-gray-600 mb-4">
-            더 많은 노트북을 보려면 브랜드별 페이지를 이용하거나 검색해주세요.
-          </p>
-          <div className="flex flex-wrap justify-center gap-2">
-            {Array.from({ length: Math.min(totalPages, 10) }, (_, i) => i + 1).map((page) => (
+        {/* Pagination */}
+        <div className="mt-8 flex justify-center gap-2">
+          {pageNum > 1 && (
+            <Link
+              href={pageNum === 2 ? "/laptops" : `/laptops/page/${pageNum - 1}`}
+              className="rounded px-3 py-2 text-sm bg-gray-200 text-gray-700 hover:bg-gray-300"
+            >
+              ← 이전
+            </Link>
+          )}
+
+          {pageNum > 3 && (
+            <>
               <Link
-                key={page}
-                href={`/laptops/page/${page}`}
-                className={`rounded px-3 py-1 text-sm ${
-                  page === 1
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                }`}
+                href="/laptops"
+                className="rounded px-3 py-2 text-sm bg-gray-200 text-gray-700 hover:bg-gray-300"
               >
-                {page}
+                1
               </Link>
-            ))}
-            {totalPages > 10 && (
-              <span className="px-2 py-1 text-gray-500">... ({totalPages} 페이지)</span>
-            )}
-          </div>
+              {pageNum > 4 && <span className="px-2 py-2 text-gray-500">...</span>}
+            </>
+          )}
+
+          {getVisiblePages().map((p) => (
+            <Link
+              key={p}
+              href={p === 1 ? "/laptops" : `/laptops/page/${p}`}
+              className={`rounded px-3 py-2 text-sm ${
+                p === pageNum
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              }`}
+            >
+              {p}
+            </Link>
+          ))}
+
+          {pageNum < totalPages - 2 && (
+            <>
+              {pageNum < totalPages - 3 && <span className="px-2 py-2 text-gray-500">...</span>}
+              <Link
+                href={`/laptops/page/${totalPages}`}
+                className="rounded px-3 py-2 text-sm bg-gray-200 text-gray-700 hover:bg-gray-300"
+              >
+                {totalPages}
+              </Link>
+            </>
+          )}
+
+          {pageNum < totalPages && (
+            <Link
+              href={`/laptops/page/${pageNum + 1}`}
+              className="rounded px-3 py-2 text-sm bg-gray-200 text-gray-700 hover:bg-gray-300"
+            >
+              다음 →
+            </Link>
+          )}
         </div>
       </main>
 
