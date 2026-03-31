@@ -51,6 +51,9 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://laptopfyi.com"),
   alternates: {
     canonical: "/",
+    types: {
+      "application/rss+xml": "https://www.laptopfyi.com/rss.xml",
+    },
   },
   openGraph: {
     title: "LaptopFYI - 노트북 스펙 비교 & 가이드",
