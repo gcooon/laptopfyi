@@ -17,79 +17,8 @@ function parseCompareSlug(slug: string): { slug1: string; slug2: string } | null
   return { slug1: parts[0], slug2: parts[1] };
 }
 
-export async function generateStaticParams() {
-  const laptops = getAllLaptops();
-  const params: { slug: string }[] = [];
-  const addedSlugs = new Set<string>();
-
-  // 1. 같은 브랜드 내 비교 (브랜드당 최대 20개 조합)
-  const brandGroups: Record<string, typeof laptops> = {};
-  laptops.forEach(l => {
-    if (!brandGroups[l.brand]) brandGroups[l.brand] = [];
-    brandGroups[l.brand].push(l);
-  });
-
-  Object.values(brandGroups).forEach(brandLaptops => {
-    let count = 0;
-    for (let i = 0; i < brandLaptops.length && count < 20; i++) {
-      for (let j = i + 1; j < brandLaptops.length && count < 20; j++) {
-        const slugs = [brandLaptops[i].slug, brandLaptops[j].slug].sort();
-        const slug = `${slugs[0]}-vs-${slugs[1]}`;
-        if (!addedSlugs.has(slug)) {
-          params.push({ slug });
-          addedSlugs.add(slug);
-          count++;
-        }
-      }
-    }
-  });
-
-  // 2. 같은 카테고리 내 인기 비교 (카테고리당 최대 15개 조합)
-  const categoryGroups: Record<string, typeof laptops> = {};
-  laptops.forEach(l => {
-    if (!categoryGroups[l.category]) categoryGroups[l.category] = [];
-    categoryGroups[l.category].push(l);
-  });
-
-  Object.values(categoryGroups).forEach(catLaptops => {
-    let count = 0;
-    // 다른 브랜드 간 비교
-    for (let i = 0; i < catLaptops.length && count < 15; i++) {
-      for (let j = i + 1; j < catLaptops.length && count < 15; j++) {
-        if (catLaptops[i].brand !== catLaptops[j].brand) {
-          const slugs = [catLaptops[i].slug, catLaptops[j].slug].sort();
-          const slug = `${slugs[0]}-vs-${slugs[1]}`;
-          if (!addedSlugs.has(slug)) {
-            params.push({ slug });
-            addedSlugs.add(slug);
-            count++;
-          }
-        }
-      }
-    }
-  });
-
-  // 3. 인기 크로스 브랜드 비교 (맥북 vs 갤럭시북 vs 그램 등)
-  const popularBrands = ['Apple', 'Samsung', 'LG', 'Lenovo', 'HP', 'Dell', 'ASUS'];
-  popularBrands.forEach((brand1, i) => {
-    popularBrands.slice(i + 1).forEach(brand2 => {
-      const laptops1 = brandGroups[brand1]?.slice(0, 3) || [];
-      const laptops2 = brandGroups[brand2]?.slice(0, 3) || [];
-      laptops1.forEach(l1 => {
-        laptops2.forEach(l2 => {
-          const slugs = [l1.slug, l2.slug].sort();
-          const slug = `${slugs[0]}-vs-${slugs[1]}`;
-          if (!addedSlugs.has(slug)) {
-            params.push({ slug });
-            addedSlugs.add(slug);
-          }
-        });
-      });
-    });
-  });
-
-  return params;
-}
+// Dynamic rendering - no generateStaticParams
+// Compare pages are rendered on-demand for faster builds
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;

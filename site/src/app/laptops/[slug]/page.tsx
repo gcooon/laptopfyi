@@ -13,12 +13,8 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateStaticParams() {
-  const laptops = getAllLaptops();
-  return laptops.map((laptop) => ({
-    slug: laptop.slug,
-  }));
-}
+// Dynamic rendering - no generateStaticParams
+// Pages are rendered on-demand for faster builds
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
