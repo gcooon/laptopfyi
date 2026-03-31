@@ -1,43 +1,11 @@
 import Link from "next/link";
 import SearchBox from "@/components/SearchBox";
-import { LogoText } from "@/components/Logo";
+import Header from "@/components/Header";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Header */}
-      <header className="border-b border-gray-200 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <h1>
-              <LogoText />
-            </h1>
-            <nav className="hidden space-x-8 md:flex">
-              <Link
-                href="/laptops"
-                className="text-gray-600 hover:text-gray-900"
-              >
-                노트북
-              </Link>
-              <Link
-                href="/compare"
-                className="text-gray-600 hover:text-gray-900"
-              >
-                비교하기
-              </Link>
-              <Link href="/brand" className="text-gray-600 hover:text-gray-900">
-                브랜드
-              </Link>
-              <Link
-                href="/use-case"
-                className="text-gray-600 hover:text-gray-900"
-              >
-                용도별
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero Section */}
       <main>
