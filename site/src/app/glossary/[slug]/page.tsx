@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import glossaryData from "@/../../data/glossary.json";
 import { generateBreadcrumbJsonLd } from "@/lib/seo";
+import Header from "@/components/Header";
 
 interface GlossaryTerm {
   id: string;
@@ -78,14 +79,7 @@ export default async function GlossaryDetailPage({ params }: PageProps) {
       />
 
       <div className="min-h-screen bg-gray-50">
-        {/* Header */}
-        <header className="border-b border-gray-200 bg-white">
-          <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-            <Link href="/" className="text-2xl font-bold text-gray-900">
-              Laptop<span className="text-blue-600">FYI</span>
-            </Link>
-          </div>
-        </header>
+        <Header activeNav="glossary" />
 
         {/* Breadcrumb */}
         <nav className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">

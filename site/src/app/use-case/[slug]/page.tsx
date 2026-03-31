@@ -7,6 +7,7 @@ import {
   formatPrice,
 } from "@/lib/laptops";
 import { generateItemListJsonLd, generateBreadcrumbJsonLd } from "@/lib/seo";
+import Header from "@/components/Header";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -148,14 +149,7 @@ export default async function UseCasePage({ params }: PageProps) {
       />
 
       <div className="min-h-screen bg-gray-50">
-        {/* Header */}
-        <header className="border-b border-gray-200 bg-white">
-          <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-            <Link href="/" className="text-2xl font-bold text-gray-900">
-              Laptop<span className="text-blue-600">FYI</span>
-            </Link>
-          </div>
-        </header>
+        <Header activeNav="use-case" />
 
         {/* Breadcrumb */}
         <nav className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
