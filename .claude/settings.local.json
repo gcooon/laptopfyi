@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest:*)",
+      "Bash(npm install)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(tree:*)",
+      "Bash(timeout:*)",
+      "Bash(node -e:*)",
+      "Bash(node scripts/generate-laptops.js:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}
