@@ -9,22 +9,63 @@ export interface JsonLdProduct {
     "@type": "Brand";
     name: string;
   };
-  offers?: {
+  image: string;
+  offers: {
     "@type": "Offer";
     price: number;
     priceCurrency: string;
     availability: string;
-    url?: string;
+    url: string;
+    itemCondition: string;
+    seller: {
+      "@type": "Organization";
+      name: string;
+    };
+    shippingDetails: {
+      "@type": "OfferShippingDetails";
+      shippingDestination: {
+        "@type": "DefinedRegion";
+        addressCountry: string;
+      };
+      deliveryTime: {
+        "@type": "ShippingDeliveryTime";
+        handlingTime: {
+          "@type": "QuantitativeValue";
+          minValue: number;
+          maxValue: number;
+          unitCode: string;
+        };
+        transitTime: {
+          "@type": "QuantitativeValue";
+          minValue: number;
+          maxValue: number;
+          unitCode: string;
+        };
+      };
+    };
+    hasMerchantReturnPolicy: {
+      "@type": "MerchantReturnPolicy";
+      applicableCountry: string;
+      returnPolicyCategory: string;
+      merchantReturnDays: number;
+      returnMethod: string;
+      returnFees: string;
+    };
   };
-  image?: string;
   aggregateRating?: {
     "@type": "AggregateRating";
     ratingValue: number;
     reviewCount: number;
+    bestRating: number;
+    worstRating: number;
   };
 }
 
+const DEFAULT_LAPTOP_IMAGE = "https://laptopfyi.com/images/laptop-placeholder.svg";
+
 export function generateProductJsonLd(laptop: Laptop): JsonLdProduct {
+  const productUrl = `https://laptopfyi.com/laptops/${laptop.slug}`;
+
   return {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -34,16 +75,49 @@ export function generateProductJsonLd(laptop: Laptop): JsonLdProduct {
       "@type": "Brand",
       name: laptop.brand,
     },
-    offers: laptop.refurlabUrl
-      ? {
-          "@type": "Offer",
-          price: laptop.priceKrw,
-          priceCurrency: "KRW",
-          availability: "https://schema.org/InStock",
-          url: laptop.refurlabUrl,
-        }
-      : undefined,
-    image: laptop.imageUrl,
+    image: laptop.imageUrl || DEFAULT_LAPTOP_IMAGE,
+    offers: {
+      "@type": "Offer",
+      price: laptop.priceKrw,
+      priceCurrency: "KRW",
+      availability: "https://schema.org/InStock",
+      url: laptop.refurlabUrl || productUrl,
+      itemCondition: "https://schema.org/UsedCondition",
+      seller: {
+        "@type": "Organization",
+        name: "LaptopFYI",
+      },
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        shippingDestination: {
+          "@type": "DefinedRegion",
+          addressCountry: "KR",
+        },
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          handlingTime: {
+            "@type": "QuantitativeValue",
+            minValue: 1,
+            maxValue: 3,
+            unitCode: "DAY",
+          },
+          transitTime: {
+            "@type": "QuantitativeValue",
+            minValue: 1,
+            maxValue: 5,
+            unitCode: "DAY",
+          },
+        },
+      },
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "KR",
+        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+        merchantReturnDays: 7,
+        returnMethod: "https://schema.org/ReturnByMail",
+        returnFees: "https://schema.org/FreeReturn",
+      },
+    },
   };
 }
 
