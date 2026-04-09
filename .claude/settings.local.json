@@ -9,7 +9,20 @@
       "Bash(timeout:*)",
       "Bash(node -e:*)",
       "Bash(node scripts/generate-laptops.js:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)",
+      "WebSearch",
+      "WebFetch(domain:laptopfyi.com)",
+      "Bash(curl:*)",
+      "Bash(git push:*)",
+      "Bash(grep:*)",
+      "Bash(npx tsc:*)",
+      "WebFetch(domain:surffing.net)",
+      "WebFetch(domain:blackkiwi.net)",
+      "WebFetch(domain:ma-pia.net)",
+      "WebFetch(domain:whereispost.com)",
+      "Bash(npx next:*)"
     ]
   }
 }

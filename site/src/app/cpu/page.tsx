@@ -4,9 +4,14 @@ import { getAllLaptops } from "@/lib/laptops";
 import Header from "@/components/Header";
 
 export const metadata: Metadata = {
-  title: "CPU별 노트북",
+  title: "CPU별 노트북 - 인텔 코어 울트라·AMD 라이젠·애플 M3 성능 비교",
   description:
-    "Intel Core Ultra, Apple M3, AMD Ryzen 등 프로세서별로 노트북을 비교해보세요.",
+    "인텔 코어 울트라, 인텔 i7, 인텔 i5, AMD 라이젠 7, 애플 M3, M3 Pro, M3 Max 등 프로세서별 노트북 성능과 중고 가격을 비교하세요. CPU 벤치마크, 전력 효율, 발열 비교 가이드.",
+  keywords: [
+    "인텔 코어 울트라", "AMD 라이젠", "애플 M3", "인텔 i7 노트북", "인텔 i5 노트북",
+    "M3 맥북", "M3 Pro 맥북", "노트북 CPU 비교", "노트북 CPU 성능", "CPU 벤치마크",
+    "AMD 노트북", "노트북 프로세서 순위",
+  ],
   alternates: {
     canonical: "/cpu",
   },

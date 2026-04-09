@@ -1,0 +1,376 @@
+[
+  {
+    "id": "afb59499-0d67-4e97-a37c-32655505ad3a",
+    "projectId": "db1d71d0-7f9f-41b2-bfe3-a835f98e78ff",
+    "timestamp": "2026-04-09T06:26:39.871Z",
+    "state": {
+      "id": "db1d71d0-7f9f-41b2-bfe3-a835f98e78ff",
+      "config": {
+        "version": "1.0",
+        "project": {
+          "name": "laptopfyi",
+          "description": "네이버 기준 중고노트북, 노트북 관련 키워드중에서 조회수가 높은 100개의 키워드를 SEO에 최적화 되도록 반영하고 싶어.",
+          "repository": ".",
+          "baseBranch": "master",
+          "workingBranch": "maestro/네이버-기준-중고노트북-노트북-관련-키워드중에서-조회"
+        },
+        "teams": {
+          "planning": {
+            "template": "planning",
+            "name": "Planning Team",
+            "description": "프로젝트 분석, 아키텍처 설계, 기술 명세 작성"
+          },
+          "frontend": {
+            "template": "frontend",
+            "name": "Frontend Team",
+            "description": "UI 컴포넌트, 페이지, 스타일링, 클라이언트 로직 개발",
+            "fileOwnership": [
+              "src/components/**",
+              "src/app/**",
+              "src/pages/**",
+              "src/styles/**",
+              "src/hooks/**",
+              "public/**"
+            ],
+            "dependencies": [
+              "planning"
+            ]
+          },
+          "backend": {
+            "template": "backend",
+            "name": "Backend Team",
+            "description": "API 라우트, 데이터 모델, 서비스, 서버 로직 개발",
+            "fileOwnership": [
+              "src/api/**",
+              "src/server/**",
+              "src/services/**",
+              "src/models/**",
+              "src/lib/**",
+              "prisma/**",
+              "drizzle/**"
+            ],
+            "dependencies": [
+              "planning"
+            ]
+          },
+          "qa": {
+            "template": "qa",
+            "name": "QA Team",
+            "description": "테스트 작성, 기능 검증, 코드 품질 확인",
+            "fileOwnership": [
+              "tests/**",
+              "**/*.test.*",
+              "**/*.spec.*",
+              "cypress/**",
+              "playwright/**",
+              "e2e/**"
+            ],
+            "dependencies": [
+              "frontend",
+              "backend"
+            ]
+          },
+          "devops": {
+            "template": "devops",
+            "name": "DevOps Team",
+            "description": "빌드 설정, CI/CD, 배포, 인프라 관리",
+            "fileOwnership": [
+              ".github/**",
+              "Dockerfile*",
+              "docker-compose*",
+              "*.config.*",
+              "scripts/**"
+            ],
+            "dependencies": [
+              "planning"
+            ]
+          },
+          "review": {
+            "template": "review",
+            "name": "Review Team",
+            "description": "보안, 성능, 코드 품질 최종 리뷰",
+            "dependencies": [
+              "frontend",
+              "backend",
+              "qa"
+            ]
+          }
+        },
+        "execution": {
+          "maxConcurrentTeams": 4,
+          "maxTotalAgents": 12,
+          "timeoutMinutes": 180,
+          "retryPolicy": {
+            "maxRetries": 3,
+            "backoffMs": 5000,
+            "escalateAfter": 2
+          }
+        },
+        "budget": {
+          "maxProjectBudgetUsd": 999,
+          "maxTeamBudgetUsd": 999,
+          "maxAgentBudgetUsd": 999,
+          "warningThreshold": 0.8
+        }
+      },
+      "status": "failed",
+      "teams": {
+        "planning": {
+          "id": "planning",
+          "name": "Planning Team",
+          "status": "failed",
+          "agents": {},
+          "tasks": [
+            "task-1",
+            "task-2"
+          ],
+          "costUsd": 0,
+          "worktreePath": "D:\\claude_code\\laptopfyi\\.maestro\\worktrees\\planning",
+          "worktreeBranch": "maestro/네이버-기준-중고노트북-노트북-관련-키워드중에서-조회/planning"
+        },
+        "frontend": {
+          "id": "frontend",
+          "name": "Frontend Team",
+          "status": "idle",
+          "agents": {},
+          "tasks": [
+            "task-3",
+            "task-4",
+            "task-5",
+            "task-6",
+            "task-7",
+            "task-8",
+            "task-9",
+            "task-10"
+          ],
+          "costUsd": 0,
+          "worktreePath": "D:\\claude_code\\laptopfyi\\.maestro\\worktrees\\frontend",
+          "worktreeBranch": "maestro/네이버-기준-중고노트북-노트북-관련-키워드중에서-조회/frontend"
+        },
+        "backend": {
+          "id": "backend",
+          "name": "Backend Team",
+          "status": "idle",
+          "agents": {},
+          "tasks": [],
+          "costUsd": 0
+        },
+        "qa": {
+          "id": "qa",
+          "name": "QA Team",
+          "status": "idle",
+          "agents": {},
+          "tasks": [
+            "task-11"
+          ],
+          "costUsd": 0,
+          "worktreePath": "D:\\claude_code\\laptopfyi\\.maestro\\worktrees\\qa",
+          "worktreeBranch": "maestro/네이버-기준-중고노트북-노트북-관련-키워드중에서-조회/qa"
+        },
+        "devops": {
+          "id": "devops",
+          "name": "DevOps Team",
+          "status": "idle",
+          "agents": {},
+          "tasks": [],
+          "costUsd": 0
+        },
+        "review": {
+          "id": "review",
+          "name": "Review Team",
+          "status": "idle",
+          "agents": {},
+          "tasks": [
+            "task-12"
+          ],
+          "costUsd": 0,
+          "worktreePath": "D:\\claude_code\\laptopfyi\\.maestro\\worktrees\\review",
+          "worktreeBranch": "maestro/네이버-기준-중고노트북-노트북-관련-키워드중에서-조회/review"
+        }
+      },
+      "tasks": {
+        "task-1": {
+          "id": "task-1",
+          "teamId": "planning",
+          "title": "네이버 상위 100개 키워드 수집 및 페이지 매핑",
+          "description": "네이버 키워드 도구 기준 중고노트북·노트북 관련 상위 100개 키워드를 조회수 순으로 정리하고, 각 키워드를 기존 페이지(/, /laptops, /brand/[slug], /use-case/[slug], /compare/[slug], /glossary/[slug]) 또는 신규 페이지에 매핑하는 전략 문서를 `/site/data/seo-keywords.json` 파일로 작성한다. 구조: [{keyword, searchVolume, intent, targetPage, isNewPage}]. 대표 키워드 예시: 중고노트북(1위), 노트북추천, 삼성노트북, LG노트북, 게이밍노트북, 사무용노트북, 노트북가격비교, 중고노트북사이트, 노트북스펙비교, 맥북중고, i5노트북, i7노트북, RTX노트북 등 100개.",
+          "status": "failed",
+          "assignedAgent": "planning-agent",
+          "dependencies": [],
+          "priority": 1,
+          "estimatedCostUsd": 1.5,
+          "retryCount": 0,
+          "startedAt": "2026-04-09T06:26:37.882Z",
+          "completedAt": "2026-04-09T06:26:37.884Z"
+        },
+        "task-2": {
+          "id": "task-2",
+          "teamId": "planning",
+          "title": "신규 랜딩 페이지 목록 확정 및 URL 구조 설계",
+          "description": "task-1의 매핑 결과에서 기존 페이지로 커버되지 않는 고검색량 키워드를 위한 신규 페이지 목록을 확정한다. 예: /used-laptops (중고노트북 전용 페이지), /laptops/budget (20만원대 노트북), /laptops/gaming (게이밍 노트북), /laptops/office (사무용 노트북), /laptops/lightweight (가벼운 노트북) 등. 각 신규 페이지의 URL slug, 타겟 키워드, h1/h2 헤딩 구조, 메타 title/description 초안을 `/site/data/new-pages-spec.json`에 작성한다.",
+          "status": "pending",
+          "assignedAgent": "planning-agent",
+          "dependencies": [
+            "task-1"
+          ],
+          "priority": 2,
+          "estimatedCostUsd": 1,
+          "retryCount": 0
+        },
+        "task-3": {
+          "id": "task-3",
+          "teamId": "frontend",
+          "title": "루트 레이아웃 글로벌 메타데이터 키워드 확장",
+          "description": "`/site/src/app/layout.tsx`의 metadata.keywords 배열을 task-1에서 선정한 상위 100개 키워드로 전면 교체한다. title을 '노트북 스펙 비교 & 중고노트북 가격 가이드 | LaptopFYI'로 수정. description을 '중고노트북 가격 비교, 노트북 스펙 비교, 삼성/LG/레노버/HP 노트북 추천까지. 2024년 최신 노트북 구매 가이드'로 업데이트. OG 태그의 description과 siteName도 동일하게 맞춘다.",
+          "status": "pending",
+          "assignedAgent": "frontend-developer",
+          "dependencies": [
+            "task-1"
+          ],
+          "priority": 1,
+          "estimatedCostUsd": 0.5,
+          "retryCount": 0
+        },
+        "task-4": {
+          "id": "task-4",
+          "teamId": "frontend",
+          "title": "홈페이지(/page.tsx) 키워드 최적화 및 구조화 데이터 추가",
+          "description": "`/site/src/app/page.tsx`에 generateMetadata 또는 상단 metadata export 추가: title='중고노트북 가격비교 & 노트북 추천 | LaptopFYI', description='네이버 중고노트북 시세, 삼성/LG/레노버/HP 노트북 추천, 게이밍/사무용/가성비 노트북 비교'. h1 태그에 '중고노트북 가격비교 & 노트북 추천' 텍스트 포함. `/site/src/lib/seo.ts`에 WebSite + Organization 스키마 함수 추가 후 홈페이지에 JSON-LD로 주입. 히어로 섹션 소개 텍스트에 '중고노트북', '노트북 추천', '노트북 가격비교' 키워드를 자연스럽게 포함시킨다.",
+          "status": "pending",
+          "assignedAgent": "frontend-developer",
+          "dependencies": [
+            "task-1"
+          ],
+          "priority": 1,
+          "estimatedCostUsd": 0.8,
+          "retryCount": 0
+        },
+        "task-5": {
+          "id": "task-5",
+          "teamId": "frontend",
+          "title": "브랜드 페이지(/brand/[slug]) 메타데이터 키워드 강화",
+          "description": "`/site/src/app/brand/[slug]/page.tsx`의 generateMetadata 함수에서 title 패턴을 '[브랜드명] 노트북 추천 & 중고 가격비교 | LaptopFYI'로 변경. keywords에 '[브랜드명] 노트북', '[브랜드명] 중고노트북', '[브랜드명] 노트북 추천' 등 브랜드별 고검색 키워드 동적 추가. description에 '중고가격', '스펙비교' 등 키워드 포함. 삼성(galaxy book 노트북, 삼성노트북 추천), LG(LG그램, lg gram), 레노버(레노버 씽크패드), HP, ASUS, MSI 등 브랜드별 특수 키워드 매핑 로직 추가.",
+          "status": "pending",
+          "assignedAgent": "frontend-developer",
+          "dependencies": [
+            "task-1"
+          ],
+          "priority": 2,
+          "estimatedCostUsd": 0.8,
+          "retryCount": 0
+        },
+        "task-6": {
+          "id": "task-6",
+          "teamId": "frontend",
+          "title": "노트북 상세 페이지(/laptops/[slug]) 키워드 메타 보강",
+          "description": "`/site/src/app/laptops/[slug]/page.tsx`의 generateMetadata에서 title 패턴을 '[모델명] 스펙 & 중고 가격 | [브랜드] 노트북 추천 - LaptopFYI'로 변경. keywords 배열에 laptop.tags 외에 '[브랜드] 노트북', '[CPU시리즈] 노트북', '중고노트북 [모델명]', '[용도] 노트북 추천'을 동적으로 추가. description에 CPU, RAM, 가격대 정보를 자연어로 포함. JSON-LD Product 스키마에 additionalProperty로 CPU/GPU/RAM 스펙 추가.",
+          "status": "pending",
+          "assignedAgent": "frontend-developer",
+          "dependencies": [
+            "task-1"
+          ],
+          "priority": 2,
+          "estimatedCostUsd": 0.8,
+          "retryCount": 0
+        },
+        "task-7": {
+          "id": "task-7",
+          "teamId": "frontend",
+          "title": "use-case 페이지(/use-case/[slug]) 키워드 최적화",
+          "description": "`/site/src/app/use-case/[slug]/page.tsx`의 generateMetadata 개선. title 패턴: '[용도] 노트북 추천 TOP [N] | 2024 가성비 비교 - LaptopFYI'. 용도별 키워드 매핑: 게이밍→'게이밍 노트북 추천, RTX 노트북, FPS 노트북', 사무→'사무용 노트북 추천, 가벼운 노트북, 오피스 노트북', 대학생→'대학생 노트북 추천, 가성비 노트북', 영상편집→'영상편집 노트북, 고성능 노트북'. 각 use-case 페이지 h1 태그와 소개 단락에 해당 키워드군 자연스럽게 포함.",
+          "status": "pending",
+          "assignedAgent": "frontend-developer",
+          "dependencies": [
+            "task-2"
+          ],
+          "priority": 2,
+          "estimatedCostUsd": 0.8,
+          "retryCount": 0
+        },
+        "task-8": {
+          "id": "task-8",
+          "teamId": "frontend",
+          "title": "중고노트북 전용 랜딩 페이지 생성 (/used-laptops)",
+          "description": "`/site/src/app/used-laptops/page.tsx` 신규 생성. 타겟 키워드: '중고노트북', '중고노트북 사이트', '중고노트북 추천', '중고노트북 가격'. metadata: title='중고노트북 추천 & 시세 비교 2024 | LaptopFYI', description='2024년 중고노트북 가격 비교와 추천 모델. 삼성/LG/레노버 중고노트북 시세를 한눈에 확인하세요.'. 콘텐츠: h1='중고노트북 추천 & 시세 가이드', 가격대별 섹션(30만원대/50만원대/70만원대), 브랜드별 중고노트북 섹션, 중고노트북 구매 팁 콘텐츠 섹션. `/site/data/laptops.json`에서 중고가(usedPrice) 필드 있는 데이터 필터링하여 표시. sitemap.ts에 해당 URL 추가(priority: 0.9).",
+          "status": "pending",
+          "assignedAgent": "frontend-developer",
+          "dependencies": [
+            "task-2"
+          ],
+          "priority": 1,
+          "estimatedCostUsd": 1.2,
+          "retryCount": 0
+        },
+        "task-9": {
+          "id": "task-9",
+          "teamId": "frontend",
+          "title": "가격대별 노트북 카테고리 페이지 생성 (/laptops/price/[range])",
+          "description": "`/site/src/app/laptops/price/[range]/page.tsx` 신규 생성. generateStaticParams로 ['under-30', 'under-50', 'under-70', 'under-100', 'over-100'] 라우트 사전 생성. 타겟 키워드: '30만원대 노트북', '50만원대 노트북', '가성비 노트북', '저렴한 노트북'. 각 range별 metadata 동적 생성: title='[가격대] 노트북 추천 & 가성비 비교 | LaptopFYI'. laptops.json에서 가격 범위 필터링 후 ItemList JSON-LD 스키마 적용. Breadcrumb: 홈 > 노트북 > [가격대]. sitemap.ts에 추가(priority: 0.8).",
+          "status": "pending",
+          "assignedAgent": "frontend-developer",
+          "dependencies": [
+            "task-2"
+          ],
+          "priority": 2,
+          "estimatedCostUsd": 1.2,
+          "retryCount": 0
+        },
+        "task-10": {
+          "id": "task-10",
+          "teamId": "frontend",
+          "title": "sitemap.ts 업데이트 및 내부 링크 네트워크 강화",
+          "description": "`/site/src/app/sitemap.ts`에 신규 페이지(/used-laptops, /laptops/price/[range]) URL 추가. /used-laptops priority를 0.9로 설정(changeFrequency: 'daily'). 홈페이지(`/site/src/app/page.tsx`)에 '중고노트북' 섹션 링크(/used-laptops), '가격대별' 섹션 링크(/laptops/price/*) 추가하여 내부 링크 네트워크 구축. 브랜드 페이지에서 해당 브랜드 중고노트북 필터 링크 추가. 노트북 상세 페이지에 '비슷한 가격대 노트북' 내부 링크 컴포넌트 추가.",
+          "status": "pending",
+          "assignedAgent": "frontend-developer",
+          "dependencies": [
+            "task-8",
+            "task-9"
+          ],
+          "priority": 3,
+          "estimatedCostUsd": 0.6,
+          "retryCount": 0
+        },
+        "task-11": {
+          "id": "task-11",
+          "teamId": "qa",
+          "title": "SEO 메타데이터 및 구조화 데이터 검증",
+          "description": "1) 모든 페이지의 title/description/keywords 메타태그가 올바르게 렌더링되는지 `next build` 후 정적 HTML 확인. 2) JSON-LD 구조화 데이터를 Google Rich Results Test 기준으로 검증(Product, BreadcrumbList, WebSite 스키마 오류 없음). 3) sitemap.xml에 신규 페이지 URL 포함 여부 확인. 4) 중복 title/description 페이지 없는지 체크. 5) 키워드 밀도가 페이지당 2-3% 이하인지 확인(keyword stuffing 방지). 6) 모든 내부 링크가 404 없이 작동하는지 확인. 발견된 이슈는 task-12로 피드백.",
+          "status": "pending",
+          "assignedAgent": "qa-engineer",
+          "dependencies": [
+            "task-3",
+            "task-4",
+            "task-5",
+            "task-6",
+            "task-7",
+            "task-8",
+            "task-9",
+            "task-10"
+          ],
+          "priority": 1,
+          "estimatedCostUsd": 0.8,
+          "retryCount": 0
+        },
+        "task-12": {
+          "id": "task-12",
+          "teamId": "review",
+          "title": "SEO 최적화 코드 리뷰 및 최종 점검",
+          "description": "1) 변경된 모든 파일(layout.tsx, page.tsx들, sitemap.ts, seo.ts, 신규 페이지들)의 TypeScript 타입 안전성 확인. 2) 네이버 SEO 가이드라인 준수 여부: OG 태그(og:title, og:description, og:image) 완비, 모바일 최적화, 페이지 로딩 속도 영향 없는지. 3) 키워드가 자연스러운 한국어 문장으로 콘텐츠에 통합되었는지 검토(기계적 나열 금지). 4) `/site/data/seo-keywords.json` 문서가 향후 유지보수를 위해 충분히 명확한지 확인. 5) QA에서 발견된 이슈 해결 확인. 최종 승인 후 master 브랜치 머지 준비.",
+          "status": "pending",
+          "assignedAgent": "review-agent",
+          "dependencies": [
+            "task-11"
+          ],
+          "priority": 1,
+          "estimatedCostUsd": 0.5,
+          "retryCount": 0
+        }
+      },
+      "startedAt": "2026-04-09T06:24:06.780Z",
+      "totalCostUsd": 0,
+      "brief": "네이버 기준 중고노트북, 노트북 관련 키워드중에서 조회수가 높은 100개의 키워드를 SEO에 최적화 되도록 반영하고 싶어.",
+      "completedAt": "2026-04-09T06:26:39.871Z"
+    },
+    "auditLogOffset": 3
+  }
+]

@@ -5,9 +5,14 @@ import CompareSelector from "@/components/CompareSelector";
 import Header from "@/components/Header";
 
 export const metadata: Metadata = {
-  title: "노트북 비교하기",
+  title: "노트북 스펙 비교 - 맥북 vs 그램, 갤럭시북 vs 씽크패드 등",
   description:
-    "두 노트북의 스펙을 나란히 비교해보세요. CPU, RAM, 디스플레이, 가격까지 한눈에 비교.",
+    "맥북 vs 그램, 갤럭시북 vs 그램, 맥북 에어 vs 프로 등 인기 노트북 스펙을 나란히 비교하세요. CPU 성능, RAM, SSD, 디스플레이, 중고 가격까지 한눈에 비교. 노트북 고르는 법의 핵심은 스펙 비교입니다.",
+  keywords: [
+    "노트북 비교", "노트북 스펙 비교", "노트북 성능 비교", "맥북 vs 그램",
+    "갤럭시북 vs 그램", "맥북 에어 vs 프로", "노트북 CPU 비교",
+    "노트북 고르는 법", "노트북 순위",
+  ],
   alternates: {
     canonical: "/compare",
   },

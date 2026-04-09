@@ -4,9 +4,14 @@ import glossaryData from "@/../../data/glossary.json";
 import Header from "@/components/Header";
 
 export const metadata: Metadata = {
-  title: "노트북 용어사전",
+  title: "노트북 용어사전 - CPU·RAM·SSD·GPU·OLED 스펙 용어 쉽게 이해하기",
   description:
-    "CPU, RAM, SSD, GPU, OLED 등 노트북 관련 용어를 쉽게 설명합니다. 스펙 이해에 도움이 되는 용어 가이드.",
+    "노트북 스펙 용어를 쉽게 설명합니다. CPU(인텔 코어 울트라, AMD 라이젠, 애플 M3), RAM, SSD, GPU, OLED, IPS, 배터리 Wh, 주사율(Hz) 등 중고 노트북 구매 전 꼭 알아야 할 용어 가이드.",
+  keywords: [
+    "노트북 용어", "노트북 스펙", "CPU 뜻", "RAM 뜻", "SSD 뜻", "GPU 뜻",
+    "OLED 노트북", "IPS 패널", "노트북 배터리 수명", "주사율 뜻",
+    "인텔 코어 울트라", "AMD 라이젠", "애플 M3", "노트북 구매 가이드",
+  ],
   alternates: {
     canonical: "/glossary",
   },

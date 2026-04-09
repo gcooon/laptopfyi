@@ -4,9 +4,15 @@ import { getAllLaptops } from "@/lib/laptops";
 import Header from "@/components/Header";
 
 export const metadata: Metadata = {
-  title: "브랜드별 노트북",
+  title: "브랜드별 노트북 - 맥북·갤럭시북·그램·씽크패드 중고 가격 비교",
   description:
-    "Apple, Samsung, LG, Lenovo, HP, Dell, ASUS, Acer, MSI 등 브랜드별 노트북을 비교해보세요.",
+    "맥북 프로, 맥북 에어, 삼성 갤럭시북4, LG 그램, 레노버 씽크패드, HP 파빌리온, 델 XPS, 에이수스 젠북, MSI 게이밍 노트북 등 브랜드별 중고 노트북 스펙과 가격을 비교하세요.",
+  keywords: [
+    "맥북", "맥북 프로", "맥북 에어", "삼성 노트북", "갤럭시북", "갤럭시북4",
+    "LG 그램", "그램 프로", "레노버 노트북", "씽크패드", "HP 노트북",
+    "델 노트북", "에이수스 노트북", "젠북", "MSI 노트북", "에이서 노트북",
+    "노트북 브랜드 순위", "브랜드별 노트북 비교",
+  ],
   alternates: {
     canonical: "/brand",
   },

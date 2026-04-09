@@ -170,7 +170,7 @@ export function generateWebSiteJsonLd(): JsonLdWebSite {
     name: "LaptopFYI",
     url: "https://laptopfyi.com",
     description:
-      "중고 노트북 스펙 비교, 가격 정보, 구매 가이드. 브랜드별, 용도별 최적의 노트북을 찾아보세요.",
+      "중고 노트북 가격 비교, 리퍼 노트북 추천, 노트북 스펙 비교 사이트. 맥북, 갤럭시북, LG 그램, 씽크패드 등 브랜드별 중고 시세와 용도별 노트북 추천 가이드를 제공합니다. 가성비 노트북부터 게이밍 노트북까지 한눈에 비교하세요.",
     potentialAction: {
       "@type": "SearchAction",
       target: {
